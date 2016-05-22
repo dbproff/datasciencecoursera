@@ -9,3 +9,6 @@ cmd <- paste(paste0("\"", executable, "\""), parameters, paste0("\"", file.path(
     f), "\""))
 system(cmd)
 ```
+
+<hr/>
+<b> THIS IS BOLD</b>
