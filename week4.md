@@ -1,9 +1,3 @@
-
-# The largest heading
-## The second largest heading
-###### The smallest heading
-# README file
-# README file
 ## The run_analysis.R script is composed of 5 major phases with the following functionality:
 
 ###### Phase 1 is designed to merge the training and the test sets to create one data set. 
