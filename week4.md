@@ -2,17 +2,36 @@
 # The largest heading
 ## The second largest heading
 ###### The smallest heading
+# README file
+## The run_analysis.R script is composed of 5 major phases with the following functionality:
 
-* The submitted data set is tidy.
-* The Github repo contains the required scripts.
-* GitHub contains a code book that modifies and updates the available codebooks with the data to indicate all the variables and summaries calculated, along with units, and any other relevant information.
-* The README that explains the analysis files is clear and understandable.
-* The work submitted for this project is the work of the student who submitted it.
+### Phase 1 is designed to merge the training and the test sets to create one data set. 
+	* reads the training and its corresponding subject and activity label files 
+		and merge it into one tidy data set named (train_data).
+	* reads the testing and its corresponding subject and activity label files 
+		and merge it into one tidy data set named (test_data).
+### Phase 2		
+	
+	* appropriately label the data set (train_data) and (test_data) with descriptive variable names 
+		taken from the features.txt and activity_labels.txt
+	* merges the training and testing tidy data sets into one and name it as (mergedData).
 
-###### run_analysis.R that does the following.
 
-* Merges the training and the test sets to create one data set.
-* Extracts only the measurements on the mean and standard deviation for each measurement.
-* Uses descriptive activity names to name the activities in the data set
-* Appropriately labels the data set with descriptive variable names.
-* From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity * and each subject.
+### Phase 3 is designed to extract only the measurements on the mean and standard deviation for each measurement in (mergedData). 
+		* use pattern matching to extract mean and std data from (mergedData) and keep subjectid and activityid
+
+### Phase 4 is designed to assign a descriptive activity name for every activity in the filteredDataSet through the following phases:
+		* reads the activity_labels.txt file to create a lookup table (activityLabels).
+		* assign the appropriate activity label based on the values in the lookup table.
+		* join mergedData with activity_labels on ActivityId
+		* tidy up  column names
+			* remove "()"
+			* replace dashes with undescores 
+			* capitalize Mean and Std
+		* Write the dataset of activities/subjects/features to a file   "GettingCleaningData_Project.TXT"
+
+### Phase 5 From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+		* set SubjectId, ActivityId, Activity as a key.
+		* reshape dataset from a short and wide format to a tall and narrow format using melt()
+		* create a data set with the average of each featureCode for each Activity and each SubjectId using cast()
+		* write the final tidy dataset of activities/subjects/features Means to a file  "GettingCleaningData_Project_Mean.TXT"
